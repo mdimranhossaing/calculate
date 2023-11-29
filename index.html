@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculate</title>
+</head>
+
+<body>
+  <table border="1" cellpadding="10" cellspacing="2">
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Net Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="" id="" onkeyup="quantityFunc(this)"></td>
+        <td><input type="text" name="" id="" onkeyup="priceFunc(this)"></td>
+        <td class="netPrice">0</td>
+      </tr>
+      <tr>
+        <td><input type="text" name="" id="" onkeyup="quantityFunc(this)"></td>
+        <td><input type="text" name="" id="" onkeyup="priceFunc(this)"></td>
+        <td class="netPrice">0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Total</td>
+        <td id="total">0</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    var total = document.getElementById('total');
+    var netPrice = document.getElementsByClassName('netPrice');
+
+    function totalResult(){
+      var cal = 0;
+      for (let i = 0; i < netPrice.length; i++) {
+        cal += parseInt(netPrice[i].innerText);
+      }
+      total.innerHTML = cal;
+    }
+
+    function quantityFunc(q) {
+      var priceValue = q.parentElement.parentElement.children[1].children[0].value;
+      q.parentElement.parentElement.children[2].innerHTML = q.value * priceValue;
+      totalResult();
+    }
+
+    function priceFunc(p) {
+      var quantityValue = p.parentElement.parentElement.children[0].children[0].value;
+      p.parentElement.parentElement.children[2].innerHTML = p.value * quantityValue;
+      totalResult();
+    }
+
+  </script>
+</body>
+
+</html>
